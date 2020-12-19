@@ -1,55 +1,35 @@
-<template>
-  <div>
-    <nuxt />
-  </div>
+<template lang="pug">
+v-app
+  v-app-bar(color="red darken-4 white--text" dense app)
+    v-app-bar-nav-icon(color="white" @click='drawer = true')
+    v-toolbar-title FirstTone Project Igniter
+    v-icon(color="white") mdi-fire
+  v-navigation-drawer(v-model='drawer' absolute temporary)
+    v-list(nav='' dense='')
+      v-list-item-group(v-model='group' active-class='red--text text--darken-4')
+        nuxt-link(to="/")
+          v-list-item
+            v-list-item-icon
+              v-icon mdi-folder-plus-outline
+            v-list-item-title 新規案件プロジェクト追加
+        nuxt-link(to="/bulk-create-projects")
+          v-list-item
+            v-list-item-icon
+              v-icon mdi-expand-all
+            v-list-item-title 空プロジェクト一括追加
+  nuxt
 </template>
 
-<style>
-html {
-  font-family: 'Source Sans Pro', -apple-system, BlinkMacSystemFont, 'Segoe UI',
-    Roboto, 'Helvetica Neue', Arial, sans-serif;
-  font-size: 16px;
-  word-spacing: 1px;
-  -ms-text-size-adjust: 100%;
-  -webkit-text-size-adjust: 100%;
-  -moz-osx-font-smoothing: grayscale;
-  -webkit-font-smoothing: antialiased;
-  box-sizing: border-box;
+<script>
+export default {
+  data:() => ({
+    drawer: false,
+    group: null,
+  })
 }
+</script>
 
-*,
-*:before,
-*:after {
-  box-sizing: border-box;
-  margin: 0;
-}
-
-.button--green {
-  display: inline-block;
-  border-radius: 4px;
-  border: 1px solid #3b8070;
-  color: #3b8070;
-  text-decoration: none;
-  padding: 10px 30px;
-}
-
-.button--green:hover {
-  color: #fff;
-  background-color: #3b8070;
-}
-
-.button--grey {
-  display: inline-block;
-  border-radius: 4px;
-  border: 1px solid #35495e;
-  color: #35495e;
-  text-decoration: none;
-  padding: 10px 30px;
-  margin-left: 15px;
-}
-
-.button--grey:hover {
-  color: #fff;
-  background-color: #35495e;
-}
+<style lang="stylus">
+a
+  text-decoration none
 </style>

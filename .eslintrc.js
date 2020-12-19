@@ -4,6 +4,12 @@ module.exports = {
     browser: true,
     node: true
   },
+  overrides: [
+    {
+      files: ["*.vue"],
+      processor: "vue/.vue"
+    }
+  ],
   parserOptions: {
     parser: 'babel-eslint'
   },

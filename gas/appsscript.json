@@ -1,10 +1,23 @@
 {
   "timeZone": "Asia/Tokyo",
   "dependencies": {
+    "libraries": [
+      {
+        "userSymbol": "LodashGS",
+        "libraryId": "1SQ0PlSMwndIuOAgtVJdjxsuXueECtY9OGejVDS37ckSVbMll73EXf2PW",
+        "version": "6"
+      },
+      {
+        "userSymbol": "Moment",
+        "libraryId": "MHMchiX6c1bwSqGM1PZiW_PxhMjh3Sh48",
+        "version": "9"
+      }
+    ]
   },
   "webapp": {
     "access": "MYSELF",
     "executeAs": "USER_DEPLOYING"
   },
-  "exceptionLogging": "STACKDRIVER"
+  "exceptionLogging": "STACKDRIVER",
+  "runtimeVersion": "V8"
 }

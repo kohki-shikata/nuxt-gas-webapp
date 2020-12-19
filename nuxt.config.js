@@ -1,6 +1,7 @@
+import webpack from "webpack"
 
 export default {
-  mode: 'spa',
+  ssr: false,
   /*
   ** Headers of the page
   */
@@ -28,20 +29,23 @@ export default {
   ** Plugins to load before mounting the App
   */
   plugins: [
+    { src: '~plugins/v-calendar.js', ssr: false }
   ],
   /*
   ** Nuxt.js dev-modules
   */
   buildModules: [
     // Doc: https://github.com/nuxt-community/eslint-module
-    '@nuxtjs/eslint-module'
+    // '@nuxtjs/eslint-module',
+    '@nuxtjs/vuetify',
   ],
   /*
   ** Nuxt.js modules
   */
   modules: [
     // Doc: https://axios.nuxtjs.org/usage
-    '@nuxtjs/axios'
+    '@nuxtjs/axios',
+    'vue-swatches/nuxt'
   ],
   /*
   ** Axios module configuration
@@ -57,7 +61,12 @@ export default {
     ** You can extend webpack config here
     */
     extend (config, ctx) {
-    }
+    },
+    plugins: [
+      new webpack.ProvidePlugin({
+        _: 'lodash'
+      })
+    ]
   },
   router: {
     extendRoutes (routes, resolve) {
@@ -68,5 +77,5 @@ export default {
       })
     }
   },
-  srcDir: 'nuxt/'
+  srcDir: 'nuxt/',
 }
