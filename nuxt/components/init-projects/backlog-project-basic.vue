@@ -63,7 +63,13 @@ div.backlog-project-basic
 </template>
 
 <script>
+
+import draggable from 'vuedraggable'
+
 export default {
+  components: {
+    draggable
+  },
   data: () => ({
     projectKey: '',
     projectTitle: '',
@@ -91,15 +97,15 @@ export default {
   }),
   methods: {
     getProjectKeys() {
-      google.script.run
-        .withSuccessHandler((res) => {
-          this.keyList = res
-          console.log(res)
-        })
-        .withFailureHandler((err) => {
-          console.log(err)
-        })
-        .getProjectKeyList()
+      // google.script.run
+      //   .withSuccessHandler((res) => {
+      //     this.keyList = res
+      //     console.log(res)
+      //   })
+      //   .withFailureHandler((err) => {
+      //     console.log(err)
+      //   })
+      //   .getProjectKeyList()
     },
     searchKey() {
       const comparison = this.projectKey

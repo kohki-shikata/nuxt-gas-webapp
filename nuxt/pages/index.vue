@@ -3,20 +3,7 @@ v-container(style="min-height: 100vh").text-left
   v-row
     v-col(col="12")
       h2.heading-2 新規案件プロジェクトを設定します
-      v-tabs(v-model="tab" background-color="lime lighten-4" centered icons-and-text color="green--text text--darken-4" style="margin-bottom: 30px")
-        v-tabs-slider
-        v-tab(href="#backlog-basics")
-          |Backlog基本設定
-          v-icon mdi-cog
-        v-tab(href="#backlog-tasks")
-          |Backlog初期課題設定
-          v-icon mdi-file-tree
-        v-tab(href="#backlog-wiki")
-          |BacklogWiki初期設定
-          v-icon mdi-book-open-outline
-        v-tab(href="#chatwork")
-          |Chatworkグループ設定
-          v-icon mdi-forum
+      tabs
       v-tabs-items(v-model="tab")
         v-tab-item(value="backlog-basics")
           backlogProjectBasic
@@ -87,16 +74,18 @@ v-container(style="min-height: 100vh").text-left
 import draggable from 'vuedraggable'
 import DatePicker from 'v-calendar/lib/components/date-picker.umd'
 
-import backlogProjectBasic from '@/components/backlog-project-basic.vue'
+import tabs from '@/components/init-projects/tabs.vue'
+import backlogProjectBasic from '@/components/init-projects/backlog-project-basic.vue'
+
 
 export default {
   components: {
+    tabs,
     draggable,
     DatePicker,
     backlogProjectBasic
   },
   data: () => ({
-    tab: '',
     ftUserList: [],
     presetTasksMovie: [],
     taskDialogFlags: [],
@@ -104,24 +93,35 @@ export default {
     startDateMenuFlags: [],
     chatworkInitFlag: true,
   }),
+  computed: {
+    tab: {
+      get() {
+        return this.$store.getters['tabs/tab']
+      },
+      set(value) {
+        this.$store.commit('tabs/update', value)
+      }
+    }
+  },
   methods: {
+
     setPresetTasksMovie() {
-      google.script.run
-        .withSuccessHandler((res) => {
-          this.presetTasksMovie = res
-          console.log(res)
-          this.createTaskDialogFlags()
-        })
-        .getPresetTasksMovie()
+      // google.script.run
+      //   .withSuccessHandler((res) => {
+      //     this.presetTasksMovie = res
+      //     console.log(res)
+      //     this.createTaskDialogFlags()
+      //   })
+      //   .getPresetTasksMovie()
     },
     getFTUsers() {
-      google.script.run
-        .withSuccessHandler((res) => {
-          this.ftUserList = res
-          console.log(res)
-          this.createTaskDialogFlags()
-        })
-        .getFtUserList()
+      // google.script.run
+      //   .withSuccessHandler((res) => {
+      //     this.ftUserList = res
+      //     console.log(res)
+      //     this.createTaskDialogFlags()
+      //   })
+      //   .getFtUserList()
     },
     FTUserNameOnly() {
       return _.map(this.ftUserList, 'name')
